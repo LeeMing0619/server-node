@@ -1,0 +1,25 @@
+extends layout
+
+block home
+    label Total： #{data.length}
+    hr
+    a(href="/add", title="title").btn Add 
+    table.list
+      thead
+        tr
+          th UserName
+          th UserID
+          th Passwd
+          th Email
+          th 
+      each item in data
+        tr
+          td= item.username
+          td= item.userid
+          td= Array(item.pwd.length + 1).join('*')
+          td= item.email
+          td  
+            a(href="/edit/#{item.id}", title="Edit").icon
+              i(aria-hidden="true").fa.fa-pencil-square
+            a(href="/delete/#{item.id}", title="Delete" onclick="return confirm('Delete user： #{item.username} ?');").icon
+              i(aria-hidden="true").fa.fa-trash
